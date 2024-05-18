@@ -42,7 +42,7 @@ def users():
 	try:
 		conn = mysql.connect()
 		cursor = conn.cursor(pymysql.cursors.DictCursor)
-		cursor.execute("SELECT * FROM rules")
+		cursor.execute("SELECT * FROM rules order by priority")
 		rows = cursor.fetchall()
 		resp = jsonify(rows)
 		resp.status_code = 200

@@ -1,6 +1,6 @@
 import logo from './logo.webp';
 import './App.css';
-import { loadTable } from './Table';
+import { useTable } from './Table';
 import { useState } from 'react';
 import { ruleForm } from './ruleForm';
 
@@ -23,7 +23,7 @@ function App() {
                 setShowForm(true)
               }} className='bg-green-500 rounded-xl px-2 m-2'>+ Add rule</a>
             </div>
-            {loadTable(setRule, setShowForm)}
+            {useTable(setRule, setShowForm)}
           </div>
         </div>
         {ruleForm(showForm, setShowForm, rule)}

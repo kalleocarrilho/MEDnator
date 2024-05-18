@@ -1,8 +1,15 @@
-import rules from './mock/rules.json';
-import React from 'react';
+import React, { useState } from 'react';
 
-export function loadTable(setRule, setShowForm) {
-    const tableContents = fetchRules(setRule, setShowForm)
+export function useTable(setRule, setShowForm) {
+    const [dbRules, setDbRules] = useState({});
+    const [fetchCalls, setFetchCalls] = useState(0);
+
+    if (fetchCalls <= 10) {
+        fetchRules(setRule, setShowForm, setDbRules)
+        setFetchCalls(fetchCalls+1)
+    }
+    console.log(dbRules)
+    
     return (
         <table className='mt-3 mb-3 text-black border-collapse table-fixed w-full text-sm'>
             <thead>
@@ -34,47 +41,50 @@ export function loadTable(setRule, setShowForm) {
                 </tr>
             </thead>
             <tbody className='bg-white dark:bg-slate-800'>
-                {tableContents}
-                
+                {dbRules.map ? dbRules.map(item => item): dbRules[0]}
             </tbody>
         </table>
     );
 }
 
-function fetchRules(setRule, setShowForm) {
-    return rules.map(rule => {
-        
-
-        return (
-            <tr>
-                <td className='border-b text-left border-slate-100 dark:border-slate-700 p-4 pl-8 text-slate-500 dark:text-slate-400'>
-                    {rule.id}
-                </td>
-                <td className='border-b text-left border-slate-100 dark:border-slate-700 p-4 pl-8 text-slate-500 dark:text-slate-400'>
-                    {rule.field_1}
-                </td>
-                <td className='border-b text-left border-slate-100 dark:border-slate-700 p-4 pl-8 text-slate-500 dark:text-slate-400'>
-                    {rule.operator}
-                </td>
-                <td className='border-b text-left border-slate-100 dark:border-slate-700 p-4 pl-8 text-slate-500 dark:text-slate-400'>
-                    {rule.field_2}
-                </td>
-                <td className='border-b text-left border-slate-100 dark:border-slate-700 p-4 pl-8 text-slate-500 dark:text-slate-400'>
-                    {rule.reason}
-                </td>
-                <td className='border-b float-center border-slate-100 dark:border-slate-700 p-4 pl-8 text-slate-500 dark:text-slate-400'>
-                    <p className={'rounded-full text-white px-3 w-fit '+ (rule.recommendation === 'approve' ? 'bg-green-500': 'bg-red-500')}>{rule.recommendation}</p>
-                </td>
-                <td className='border-b text-left border-slate-100  dark:border-slate-700 p-4 pl-8 text-slate-500 dark:text-slate-400'>
-                    {rule.priority}
-                </td>
-                <td className='border-b text-left border-slate-100 dark:border-slate-700 p-4 pl-8 text-slate-500 dark:text-slate-400'>
-                    <a data-item={JSON.stringify(rule)} id={"edit"+rule.id} onClick={(event) => {
-                        setRule(JSON.parse(event.target.getAttribute('data-item')))
-                        setShowForm(true)
-                    }}>Edit</a>
-                </td>
-            </tr>
-        )
-    })
+function fetchRules(setRule, setShowForm, setDbRules) {
+    fetch('http://localhost:5000/rules')
+        .then((rules) => rules.json())
+        .then((rules) => {
+            console.log(rules)
+            let r = rules.map((rule) => {
+                return (
+                    <tr>
+                        <td className='border-b text-left border-slate-100 dark:border-slate-700 p-4 pl-8 text-slate-500 dark:text-slate-400'>
+                            {rule.id}
+                        </td>
+                        <td className='border-b text-left border-slate-100 dark:border-slate-700 p-4 pl-8 text-slate-500 dark:text-slate-400'>
+                            {rule.first_field}
+                        </td>
+                        <td className='border-b text-left border-slate-100 dark:border-slate-700 p-4 pl-8 text-slate-500 dark:text-slate-400'>
+                            {rule.operator}
+                        </td>
+                        <td className='border-b text-left border-slate-100 dark:border-slate-700 p-4 pl-8 text-slate-500 dark:text-slate-400'>
+                            {rule.second_field}
+                        </td>
+                        <td className='border-b text-left border-slate-100 dark:border-slate-700 p-4 pl-8 text-slate-500 dark:text-slate-400'>
+                            {rule.reason}
+                        </td>
+                        <td className='border-b float-center border-slate-100 dark:border-slate-700 p-4 pl-8 text-slate-500 dark:text-slate-400'>
+                            <p className={'rounded-full text-white px-3 w-fit '+ (rule.recommendation === 'approve' ? 'bg-green-500': 'bg-red-500')}>{rule.recommendation}</p>
+                        </td>
+                        <td className='border-b text-left border-slate-100  dark:border-slate-700 p-4 pl-8 text-slate-500 dark:text-slate-400'>
+                            {rule.priority}
+                        </td>
+                        <td className='border-b text-left border-slate-100 dark:border-slate-700 p-4 pl-8 text-slate-500 dark:text-slate-400'>
+                            <a data-item={JSON.stringify(rule)} id={"edit"+rule.id} onClick={(event) => {
+                                setRule(JSON.parse(event.target.getAttribute('data-item')))
+                                setShowForm(true)
+                            }}>Edit</a>
+                        </td>
+                    </tr>
+                )
+            })
+            setDbRules(r)
+        })
 }
