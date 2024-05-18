@@ -4,6 +4,7 @@ from dbConfig import mysql
 from flask import jsonify
 from flask import flash, request
 from flask_cors import cross_origin
+import random
 		
 @app.route('/add', methods=['POST'])
 def add_user():
@@ -111,6 +112,35 @@ def not_found(error=None):
     }
     resp = jsonify(message)
     resp.status_code = 404
+    return resp
+
+@app.route('/mocks/pay')
+@cross_origin()
+def mock_pay():
+    value = random.uniform(1, 100)
+    if value > 50:
+        body = {
+            "same_merchant_payments": 16,
+            "pix_payments": 33,
+            "pix_average_amount": 55.34,
+            "pix_average_amount_for_merchant": 30.79
+        }
+    else:
+        body = {
+            "same_merchant_payments": 0,
+            "pix_payments": 2,
+            "pix_average_amount": 325.09,
+            "pix_average_amount_for_merchant": 0
+        }
+    resp = jsonify(body)
+    resp.status_code = 200
+    return resp
+
+@app.route('/mocks/ip')
+@cross_origin()
+def mock_ip():
+    resp = jsonify({"isQrCodeSameOwner": "true"})
+    resp.status_code = 200
     return resp
 
 app.run()
