@@ -1,0 +1,92 @@
+[
+    {
+        "id": 1,
+        "field_1": "abc123",
+        "operator": "==",
+        "field_2": "xyz789",
+        "recommendation": "approve",
+        "reason": "Fields do not meet the combined criteria.",
+        "priority": 0
+    },
+    {
+        "id": 2,
+        "field_1": "test456",
+        "operator": ">",
+        "field_2": "check123",
+        "recommendation": "reject",
+        "reason": "Correct negative condition identified.",
+        "priority": 15
+    },
+    {
+        "id": 3,
+        "field_1": "data789",
+        "operator": ">=",
+        "field_2": "info321",
+        "recommendation": "approve",
+        "reason": "Fields match and criteria are met.",
+        "priority": 100
+    },
+    {
+        "id": 4,
+        "field_1": "alpha001",
+        "operator": "<",
+        "field_2": "beta002",
+        "recommendation": "reject",
+        "reason": "Fields do not meet the required conditions.",
+        "priority": 200
+    },
+    {
+        "id": 5,
+        "field_1": "gamma003",
+        "operator": "==",
+        "field_2": "delta004",
+        "recommendation": "approve",
+        "reason": "Negative condition correctly identified.",
+        "priority": 400
+    },
+    {
+        "id": 6,
+        "field_1": "epsilon005",
+        "operator": "==",
+        "field_2": "zeta006",
+        "recommendation": "reject",
+        "reason": "Field values conflict with the criteria.",
+        "priority": 500
+    },
+    {
+        "id": 7,
+        "field_1": "eta007",
+        "operator": "==",
+        "field_2": "theta008",
+        "recommendation": "approve",
+        "reason": "At least one field meets the criteria.",
+        "priority": 600
+    },
+    {
+        "id": 8,
+        "field_1": "iota009",
+        "operator": "==",
+        "field_2": "kappa010",
+        "recommendation": "reject",
+        "reason": "Negative condition not satisfied.",
+        "priority": 700
+    },
+    {
+        "id": 9,
+        "field_1": "lambda011",
+        "operator": "NOT",
+        "field_2": "mu012",
+        "recommendation": "approve",
+        "reason": "Fields correctly combined as per rules.",
+        "priority": 800
+    },
+    {
+        "id": 10,
+        "field_1": "nu013",
+        "operator": "AND",
+        "field_2": "xi014",
+        "recommendation": "reject",
+        "reason": "Neither field meets the required criteria.",
+        "priority": 900
+    }
+]
