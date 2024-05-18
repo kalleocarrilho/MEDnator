@@ -23,11 +23,13 @@ Here's how to set up a virtual environment for this project:
    python3 -m venv env
    ```
 3. Activate the virtual environment. On macOS and Linux:
+    ```
    source env/bin/activate
+   ```
 
 ### Installing Dependencies
 This project uses Flask version 2.3.3 due to known bugs in newer versions. To install this specific version, use pip:
-    pip install flask==2.3.3
+    ```pip install flask==2.3.3```
 
 Install other necessary packages by running:
     pip install <package-name>

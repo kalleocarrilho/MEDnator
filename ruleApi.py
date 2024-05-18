@@ -121,16 +121,16 @@ def mock_pay():
     if value > 50:
         body = {
             "sameMerchantTransactions": 16,
-            "pix_payments": 33,
-            "pix_average_amount": 55.34,
-            "pix_average_amount_for_merchant": 30.79
+            "pixPayments": 33,
+            "pixAverageAmount": 55.34,
+            "pixAverageAmountForMerchant": 30.79
         }
     else:
         body = {
             "sameMerchantTransactions": 0,
-            "pix_payments": 2,
-            "pix_average_amount": 325.09,
-            "pix_average_amount_for_merchant": 0
+            "pixPayments": 2,
+            "pixAverageAmount": 325.09,
+            "pixAverageAmountForMerchant": 0
         }
     resp = jsonify(body)
     resp.status_code = 200
