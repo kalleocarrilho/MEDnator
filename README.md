@@ -32,17 +32,16 @@ This project uses Flask version 2.3.3 due to known bugs in newer versions. To in
     ```pip install flask==2.3.3```
 
 Install other necessary packages by running:
-    pip install <package-name>
+    ```pip install <package-name>```
 
 Running the Application
 After setting up, you can run the application using the following command:
-    python3 ruleApi.py
-
+    ```python3 ruleApi.py```
 
 ## To execute the front-end, enter the configurator folder:
-    cd configurator
+    ```cd configurator```
 
 Install the project dependencies with:
-    npm install
+    ```npm install```
 and execute the project using:
-    npm start
+    ```npm start```
