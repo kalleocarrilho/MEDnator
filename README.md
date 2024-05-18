@@ -1,6 +1,6 @@
-# Project Name
+# MEDnator
 
-Please provide a brief description of your project here.
+Front & back-end project to store and gather MED analysis rules. 
 
 ## Getting Started
 
