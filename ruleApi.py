@@ -120,14 +120,14 @@ def mock_pay():
     value = random.uniform(1, 100)
     if value > 50:
         body = {
-            "same_merchant_payments": 16,
+            "sameMerchantTransactions": 16,
             "pix_payments": 33,
             "pix_average_amount": 55.34,
             "pix_average_amount_for_merchant": 30.79
         }
     else:
         body = {
-            "same_merchant_payments": 0,
+            "sameMerchantTransactions": 0,
             "pix_payments": 2,
             "pix_average_amount": 325.09,
             "pix_average_amount_for_merchant": 0

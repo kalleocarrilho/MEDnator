@@ -4,7 +4,7 @@ mysql = MySQL()
  
 # MySQL configurations
 app.config['MYSQL_DATABASE_USER'] = 'root'
-app.config['MYSQL_DATABASE_PASSWORD'] = 'password'
-app.config['MYSQL_DATABASE_DB'] = 'heimdall'
-app.config['MYSQL_DATABASE_HOST'] = '127.0.0.1'
+app.config['MYSQL_DATABASE_PASSWORD'] = 'abacate1'
+app.config['MYSQL_DATABASE_DB'] = 'MEDnator'
+app.config['MYSQL_DATABASE_HOST'] = 'localhost'
 mysql.init_app(app)
